@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="leading-tight">
               <p className="font-heading text-2xl text-brand-cream">Ward Agency</p>
               <p className="text-sm text-brand-cream/72">
-                Premium DJ and Artist Management
+               Artist Management
               </p>
             </div>
           </div>
