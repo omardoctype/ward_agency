@@ -55,13 +55,13 @@ export default function RosterSection({
   const curatedArtistsText = `${artists.length} curated artists`
 
   return (
-    <section id="roster" className="space-y-8 lg:space-y-10">
+    <section id="roster" className="space-y-5 py-12 sm:space-y-6 sm:py-14 lg:space-y-8 lg:py-16">
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.45 }}
         transition={{ duration: 0.6 }}
-        className="max-w-3xl space-y-3"
+        className="max-w-3xl space-y-2.5 sm:space-y-3"
       >
         <p className="section-kicker">Artist Roster</p>
         <h2 className="font-heading text-4xl leading-tight text-brand-cream sm:text-5xl">
@@ -73,11 +73,11 @@ export default function RosterSection({
         </p>
       </motion.div>
 
-      <div className="relative space-y-3 overflow-hidden rounded-2xl border border-brand-border bg-[linear-gradient(150deg,rgba(10,10,10,0.96),rgba(6,6,6,0.98))] p-3.5 shadow-panel backdrop-blur-xl sm:p-4">
+      <div className="relative space-y-2.5 overflow-hidden rounded-2xl border border-brand-border bg-[linear-gradient(150deg,rgba(10,10,10,0.96),rgba(6,6,6,0.98))] p-3 shadow-panel backdrop-blur-xl sm:space-y-3 sm:p-4">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_95%_0%,rgba(201,164,92,0.14),transparent_38%)]" />
         <label className="relative block">
           <Search
-            size={15}
+            size={14}
             className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-beige"
           />
           <input
@@ -85,7 +85,7 @@ export default function RosterSection({
             onChange={(event) => setSearchTerm(event.target.value)}
             type="text"
             placeholder="Search by name, category, or genre..."
-            className="h-10 w-full rounded-full border border-brand-border bg-black/90 pl-10 pr-4 text-sm text-brand-cream outline-none transition placeholder:text-brand-darkMuted focus:border-brand-borderStrong"
+            className="h-9 w-full rounded-full border border-brand-border bg-black/90 pl-9 pr-3.5 text-sm text-brand-cream outline-none transition placeholder:text-brand-darkMuted focus:border-brand-borderStrong sm:h-10 sm:pl-10 sm:pr-4"
           />
         </label>
 
@@ -94,15 +94,15 @@ export default function RosterSection({
             <SlidersHorizontal size={13} />
             Genre Filter
           </div>
-          <p className="text-xs text-brand-beige">
+          <p className="hidden text-xs text-brand-beige sm:block">
             {curatedArtistsText}
           </p>
-          <p className="text-xs text-brand-muted">
+          <p className="text-[11px] text-brand-muted sm:text-xs">
             {filteredArtists.length} result{filteredArtists.length === 1 ? '' : 's'}
           </p>
         </div>
 
-        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {genreFilters.map((genre) => {
             const isActive = activeGenre === genre
 
@@ -111,7 +111,7 @@ export default function RosterSection({
                 key={genre}
                 type="button"
                 onClick={() => setActiveGenre(genre)}
-                className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition ${
+                className={`rounded-full border px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] transition sm:px-3.5 sm:text-[11px] ${
                   isActive
                     ? 'border-brand-borderStrong bg-brand-gold/25 text-brand-cream'
                     : 'border-brand-border bg-black/70 text-brand-muted hover:border-brand-borderStrong hover:text-brand-beige'
@@ -153,8 +153,10 @@ export default function RosterSection({
       ) : (
         <motion.div
           layout
-          className={`mx-auto grid w-full max-w-[980px] gap-5 ${
-            filteredArtists.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'
+          className={`grid grid-cols-1 gap-5 sm:gap-6 lg:gap-8 ${
+            filteredArtists.length === 1 ? 'sm:grid-cols-1' : 'sm:grid-cols-2'
+          } ${
+            filteredArtists.length === 2 ? 'lg:mx-auto lg:max-w-[980px]' : ''
           }`}
         >
           <AnimatePresence mode="popLayout">
@@ -174,7 +176,7 @@ export default function RosterSection({
                   },
                 }}
                 exit={{ opacity: 0, y: 14, scale: 0.97 }}
-                className="mx-auto w-full max-w-[460px]"
+                className={`w-full ${filteredArtists.length === 2 ? 'lg:mx-auto lg:max-w-[460px]' : ''}`}
               >
                 <ArtistCard artist={artist} onSelect={onSelectArtist} />
               </motion.div>

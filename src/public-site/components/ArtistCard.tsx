@@ -81,7 +81,7 @@ export default function ArtistCard({ artist, onSelect }: ArtistCardProps) {
           onSelect(artist)
         }
       }}
-      className="group relative h-[34rem] w-full cursor-pointer overflow-hidden rounded-2xl border text-left shadow-panel backdrop-blur-xl"
+      className="group relative w-full cursor-pointer overflow-hidden rounded-2xl border text-left shadow-panel backdrop-blur-xl"
     >
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -102,7 +102,7 @@ export default function ArtistCard({ artist, onSelect }: ArtistCardProps) {
         className="pointer-events-none absolute inset-y-0 z-10 w-24 bg-gradient-to-r from-transparent via-brand-cream/35 to-transparent blur-[2px]"
       />
 
-      <div className="relative h-[65%] overflow-hidden">
+      <div className="relative h-64 overflow-hidden sm:h-72 lg:h-80 xl:h-96">
         {!imageFailed ? (
           <img
             src={artist.coverImage}
@@ -119,11 +119,11 @@ export default function ArtistCard({ artist, onSelect }: ArtistCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#02020266] to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_16%,rgba(201,164,92,0.25),transparent_42%)] opacity-70" />
 
-        <div className="absolute inset-x-4 bottom-4 space-y-2">
+        <div className="absolute inset-x-4 bottom-4 space-y-1.5 sm:space-y-2">
           <span className="inline-flex rounded-full border border-brand-borderStrong bg-brand-gold/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.13em] text-brand-cream">
             {artist.category}
           </span>
-          <h3 className="font-heading text-3xl leading-tight text-brand-cream">
+          <h3 className="font-heading text-2xl leading-tight text-brand-cream sm:text-3xl">
             {artist.stageName}
           </h3>
           <p className="text-xs uppercase tracking-[0.18em] text-brand-beige/90">
@@ -132,30 +132,28 @@ export default function ArtistCard({ artist, onSelect }: ArtistCardProps) {
         </div>
       </div>
 
-      <div className="relative flex h-[35%] flex-col justify-between p-5">
-        <div className="space-y-3">
-          <div className="flex flex-wrap gap-2">
-            {artist.genres.slice(0, 4).map((genre) => (
-              <span
-                key={genre}
-                className="rounded-full border border-brand-border bg-brand-bg/75 px-3 py-1 text-[11px] font-medium text-brand-beige"
-              >
-                {genre}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-sm leading-relaxed text-brand-cream/78">{artist.shortBio}</p>
+      <div className="relative space-y-3 p-4 sm:space-y-3.5 sm:p-5">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          {artist.genres.slice(0, 4).map((genre) => (
+            <span
+              key={genre}
+              className="rounded-full border border-brand-border bg-brand-bg/75 px-2.5 py-1 text-[10px] font-medium text-brand-beige sm:px-3 sm:text-[11px]"
+            >
+              {genre}
+            </span>
+          ))}
         </div>
 
-        <div className="flex gap-2 pt-3">
+        <p className="text-sm leading-relaxed text-brand-cream/78">{artist.shortBio}</p>
+
+        <div className="flex gap-2 pt-1 sm:pt-2">
           <button
             type="button"
             onClick={(event) => {
               event.stopPropagation()
               onSelect(artist)
             }}
-            className="luxury-button-ghost flex-1 !px-4 !py-2.5 !text-sm group-hover:shadow-[0_0_26px_rgba(201,164,92,0.2)]"
+            className="luxury-button-ghost flex-1 !px-3 !py-2 !text-xs group-hover:shadow-[0_0_26px_rgba(201,164,92,0.2)] sm:!px-4 sm:!py-2.5 sm:!text-sm"
           >
             View Profile
           </button>
@@ -165,7 +163,7 @@ export default function ArtistCard({ artist, onSelect }: ArtistCardProps) {
               event.stopPropagation()
               onSelect(artist, { focusSpotify: true })
             }}
-            className="luxury-button flex-1 gap-1.5 !px-4 !py-2.5 !text-sm"
+            className="luxury-button flex-1 gap-1.5 !px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
           >
             <Play size={14} />
             Listen on Spotify
