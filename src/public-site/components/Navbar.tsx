@@ -57,7 +57,7 @@ export default function Navbar() {
             </div>
             <div className="leading-tight">
               <p className="font-heading text-lg tracking-wide text-brand-cream">Ward Agency</p>
-              <p className="text-xs text-brand-muted">Artist and DJ Management</p>
+              <p className="text-xs text-brand-muted">DJ Management</p>
             </div>
           </a>
 
